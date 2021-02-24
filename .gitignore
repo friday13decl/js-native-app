@@ -4,3 +4,6 @@
 
 # nodejs files
 node_modules
+
+# project builds
+dist
