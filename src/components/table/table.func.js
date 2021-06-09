@@ -12,7 +12,12 @@ function createColumns(count) {
 }
 
 function createColumn(_, index) {
-  return `<div class="column">${String.fromCharCode(CODES.A + index)}</div>`;
+  return `
+    <div class="column" data-resizable="true" data-col="${index}">
+      ${String.fromCharCode(CODES.A + index)}
+      <div class="col-resize" data-resize="col"></div>
+    </div>
+  `;
 }
 
 function createCells(rowIndex, count) {
@@ -23,15 +28,18 @@ function createCells(rowIndex, count) {
 }
 
 function createCell(rowIndex, _, colIndex) {
-  return `<div class="cell" contenteditable>
+  return `<div class="cell" contenteditable data-col="${colIndex}">
     ${String.fromCharCode(CODES.A + colIndex)}${rowIndex + 1}
   </div>`;
 }
 
 function createRow(index, content) {
   return `
-    <div class="row">
-      <div class="row-info">${index || ''}</div>
+    <div class="row" data-resizable="true">
+      <div class="row-info">
+        ${index || ''}
+        ${index && '<div class="row-resize" data-resize="row"></div>' || ''}
+      </div>
       <div class="row-data">${content}</div>
     </div>
   `;
