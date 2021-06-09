@@ -6,9 +6,35 @@
   left: 0;
   right: 0;
   top: $header-height + $toolbar-height + $formula-height;
-  overflow-x: auto;
   padding-bottom: 2px;
   height: calc(100% - 98px);
+  overflow: visible;
+
+  .row-resize, .col-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $primary-color;
+    opacity: 0;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    &.dragged {
+      opacity: 0.5;
+      z-index: 999;
+    }
+  }
+
+  .col-resize.dragged {
+    top: -($header-height + $toolbar-height + $formula-height) !important;
+    bottom: -100vh;
+  }
+
+  .row-resize.dragged {
+    width: 100vw;
+  }
 
   .row {
     display: flex;
@@ -17,6 +43,7 @@
     height: $row-height;
 
     .row-info {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,12 +52,19 @@
       border: 1px solid $border-color;
       border-top: none;
       background: #f8f9fa;
+
+      .row-resize {
+        left: 0;
+        height: 2px;
+        cursor: row-resize;
+      }
     }
 
     .row-data {
       display: flex;
 
       .column {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -41,6 +75,12 @@
         border-top: none;
         border-left: none;
         height: 100%;
+
+        .col-resize {
+          top: 0;
+          width: 4px;
+          cursor: col-resize;
+        }
       }
 
       .cell {
@@ -57,7 +97,7 @@
 
         &.selected {
           border: none;
-          outline: 2px solid #3c74ff;
+          outline: 2px solid $primary-color;
           z-index: 2;
         }
       }

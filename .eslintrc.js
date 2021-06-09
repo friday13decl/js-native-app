@@ -11,7 +11,8 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
     'arrow-parens': ['error', 'as-needed'],
     'require-jsdoc': 'off',
-    'object-curly-spacing': ['error', 'always']
+    'object-curly-spacing': ['error', 'always'],
+    'no-invalid-this': 'off'
   },
   extends: ['eslint:recommended', 'google']
 };

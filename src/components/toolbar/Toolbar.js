@@ -11,7 +11,6 @@ export class Toolbar extends ExcelComponent {
   }
 
   onClick(event) {
-    console.log(event.target);
     if (event.target.textContent === 'format_align_left') {
       console.log('Go left');
     }
